@@ -11,6 +11,12 @@ import producto.ClsProducto;
  *
  *         juanj8845@gmail.com
  */
+
+
+/*
+ * PRUEBA DE COMMIT A VER SI FUNCIONA
+ */
+
 public class ProductoDAO extends ClsConexion {
 	ClsProducto dao = new ClsProducto();
 
