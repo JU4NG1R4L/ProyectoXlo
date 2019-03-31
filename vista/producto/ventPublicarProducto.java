@@ -36,6 +36,13 @@ public class ventPublicarProducto extends JFrame {
 			}
 		});
 	}
+	
+	/*
+	 * 
+	 * 
+	 * jgjkglkjhkjjhkjhlkjhklhlkjh
+	 * 
+	 */
 
 	/**
 	 * Create the frame.
@@ -114,6 +121,10 @@ public class ventPublicarProducto extends JFrame {
 		btnSubirImagen.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSubirImagen.setBounds(27, 384, 147, 25);
 		contentPane.add(btnSubirImagen);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(241, 381, 56, 16);
+		contentPane.add(lblNewLabel_2);
 	}
 
 }

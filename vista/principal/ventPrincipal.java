@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ventPrincipal extends JFrame {
 
@@ -47,10 +49,14 @@ public class ventPrincipal extends JFrame {
 		contentPane.add(lblBienvenidosAMi);
 		
 		JButton btnCliente = new JButton("CLIENTE");
-		btnCliente.setBounds(73, 203, 124, 83);
+		btnCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCliente.setBounds(39, 203, 124, 83);
 		contentPane.add(btnCliente);
 		
-		JButton btnVendedor = new JButton("VENDEDOR");
+		JButton btnVendedor = new JButton("PRODUCTO");
 		btnVendedor.setBounds(372, 203, 124, 83);
 		contentPane.add(btnVendedor);
 	}
