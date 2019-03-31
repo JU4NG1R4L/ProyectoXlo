@@ -17,14 +17,16 @@ public ClsUsuario() {
 }
 
 public ClsUsuario(String cedulaUsuario, String nombreUsuario, String telefonoUsuario, String emailUsuario,
-		String contrasenaUsuario) {
+		String contrasenaUsuario, boolean login) {
 	super();
 	this.cedulaUsuario = cedulaUsuario;
 	this.nombreUsuario = nombreUsuario;
 	this.telefonoUsuario = telefonoUsuario;
 	this.emailUsuario = emailUsuario;
 	this.contrasenaUsuario = contrasenaUsuario;
+	this.login = login;
 }
+
 
 public ClsUsuario(boolean login) {
 	super();
