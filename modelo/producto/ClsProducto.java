@@ -16,6 +16,16 @@ public class ClsProducto {
 	private String descripcionProducto;
 	private int ubicacion_idUbicacion;
 
+	public ClsProducto(String imagenProducto, String nombreProducto, float precioProducto, String descripcionProducto,
+			int ubicacion_idUbicacion) {
+		super();
+		this.imagenProducto = imagenProducto;
+		this.nombreProducto = nombreProducto;
+		this.precioProducto = precioProducto;
+		this.descripcionProducto = descripcionProducto;
+		this.ubicacion_idUbicacion = ubicacion_idUbicacion;
+	}
+
 	public ClsProducto(int codigoProducto,String imagenProducto, String nombreProducto, float precioProducto, String descripcionProducto, int ubicacion_idUbicacion) {
 		super();
 		this.codigoProducto = codigoProducto;

@@ -55,6 +55,7 @@ public class ProductoDAO extends ClsConexion {
 		String consulta = "delete from producto where codigoProducto=" + codigoProducto;
 		return super.ejecutar(consulta);
 	}
+	
 	public DefaultComboBoxModel cargarUbicacion() {
 		DefaultComboBoxModel combo = new DefaultComboBoxModel<>();
 		String consulta = "select * from ubicacion";
