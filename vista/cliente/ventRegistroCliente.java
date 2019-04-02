@@ -45,6 +45,8 @@ public class ventRegistroCliente extends JFrame {
 			}
 		});
 	}
+	
+	// PUTA MARICADA 
 
 	/**
 	 * Create the frame.
