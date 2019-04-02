@@ -29,7 +29,7 @@ public class CtlProducto {
 		return proDAO.guardarProducto(producto);
 	}
 //	public ClsProducto SolicitudBuscar() {
-//		
+//		PERROR HIPETAJASHDAHISD
 //	}
 	public boolean SolicitudModificar(int codigoProducto, String imagenProducto, String nombreProducto, float precioProducto, String descripcionProducto, int ubicacion_idUbicacion) {
 		ClsProducto producto = new ClsProducto(codigoProducto, imagenProducto, nombreProducto, precioProducto, descripcionProducto, ubicacion_idUbicacion);
