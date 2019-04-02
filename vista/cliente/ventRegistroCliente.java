@@ -29,8 +29,6 @@ public class ventRegistroCliente extends JFrame {
 	public JTextField txtEmailUsuario;
 	static ventRegistroCliente frame;
 	CtlUsuario controlador;
-
-	//as da sd
 	
 	/**
 	 * Launch the application.
