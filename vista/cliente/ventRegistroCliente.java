@@ -30,6 +30,8 @@ public class ventRegistroCliente extends JFrame {
 	static ventRegistroCliente frame;
 	CtlUsuario controlador;
 
+	//as da sd
+	
 	/**
 	 * Launch the application.
 	 */
