@@ -6,21 +6,29 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controladorUsuario.CtlUsuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ventRegistroCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtCedulaUsuario;
-	private JTextField txtContrasenaUsuario;
-	private JTextField txtNombreUsuario;
-	private JTextField txtTelefonoUsuario;
-	private JTextField txtEmailUsuario;
+	public JTextField txtCedulaUsuario;
+	public JTextField txtContrasenaUsuario;
+	public JTextField txtNombreUsuario;
+	public JTextField txtTelefonoUsuario;
+	public JTextField txtEmailUsuario;
+	static ventRegistroCliente frame;
+	CtlUsuario controlador;
 
 	/**
 	 * Launch the application.
@@ -29,7 +37,7 @@ public class ventRegistroCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ventRegistroCliente frame = new ventRegistroCliente();
+					frame = new ventRegistroCliente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,6 +50,9 @@ public class ventRegistroCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public ventRegistroCliente() {
+		
+		controlador = new CtlUsuario();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 535, 556);
 		contentPane = new JPanel();
@@ -55,6 +66,25 @@ public class ventRegistroCliente extends JFrame {
 		contentPane.add(lblregistrateEsGratis);
 		
 		JButton btnRegistro = new JButton("REGISTRO");
+		btnRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String cedulaUsuario = txtCedulaUsuario.getText();	
+				String nombreUsuario = txtNombreUsuario.getText();
+				String telefonoUsuario = txtTelefonoUsuario.getText();
+				String emailUsuario = txtEmailUsuario.getText();
+				String contrasenaUsuario = txtContrasenaUsuario.getText();
+				boolean login = true;
+				
+				if (controlador.SolicitudGuardar(cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario, contrasenaUsuario, login)) {
+					JOptionPane.showMessageDialog(null, "¡Te has registrado con éxito!");
+				} else {
+					JOptionPane.showMessageDialog(null, "¡Ocurrio un error mientras te registrabas!");
+				}
+				
+				
+			}
+		});
 		btnRegistro.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnRegistro.setBounds(71, 464, 131, 32);
 		contentPane.add(btnRegistro);

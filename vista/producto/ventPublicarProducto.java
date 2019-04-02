@@ -119,12 +119,8 @@ public class ventPublicarProducto extends JFrame {
 		
 		JButton btnSubirImagen = new JButton("SUBIR IMAGEN");
 		btnSubirImagen.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSubirImagen.setBounds(27, 384, 147, 25);
+		btnSubirImagen.setBounds(27, 387, 147, 25);
 		contentPane.add(btnSubirImagen);
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(241, 381, 56, 16);
-		contentPane.add(lblNewLabel_2);
 	}
 
 }
