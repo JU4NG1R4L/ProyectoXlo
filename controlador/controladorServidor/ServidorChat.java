@@ -22,6 +22,7 @@ public class ServidorChat {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
 		int puerto = 1234;
 		int maximoConexiones = 10; // Maximo de conexiones simultaneas
 		ServerSocket servidor = null;
@@ -56,6 +57,4 @@ public class ServidorChat {
 			}
 		}
 	}
-	}
-
 }
