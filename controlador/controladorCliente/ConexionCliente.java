@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import hilos.servidor.ClsArchivo;
-import hilos.servidor.MensajesChat;
+import archivo.ClsArchivo;
+import mensaje.ClsMensaje;
+
 
 /**
  * @author (Juan José Giraldo Salazar)
@@ -27,7 +28,8 @@ import hilos.servidor.MensajesChat;
 public class ConexionCliente extends Thread implements Observer {
 
 	private Socket socket;
-	private MensajesChat mensajes;
+	
+	private ClsMensaje mensajes;
 	private ClsArchivo archivos;
 	private DataInputStream entradaDatos;
 	private DataOutputStream salidaDatos;
@@ -40,7 +42,7 @@ public class ConexionCliente extends Thread implements Observer {
 	int entrada;
 	String archivo, ruta;
 
-	public ConexionCliente(Socket socket, MensajesChat mensajes, ClsArchivo archivos) {
+	public ConexionCliente(Socket socket, ClsMensaje mensajes, ClsArchivo archivos) {
 		this.socket = socket;
 		this.mensajes = mensajes;
 		this.archivos = archivos;

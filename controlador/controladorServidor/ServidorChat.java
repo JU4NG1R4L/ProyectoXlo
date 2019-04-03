@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import hilos.servidor.ClsArchivo;
-import hilos.servidor.ConexionCliente;
-import hilos.servidor.MensajesChat;
+import archivo.ClsArchivo;
+import controladorCliente.ConexionCliente;
+import mensaje.ClsMensaje;
+
 
 /**
  * @author (Juan José Giraldo Salazar)
@@ -27,7 +28,7 @@ public class ServidorChat {
 		int maximoConexiones = 10; // Maximo de conexiones simultaneas
 		ServerSocket servidor = null;
 		Socket socket = null;
-		MensajesChat mensajes = new MensajesChat();
+		ClsMensaje mensajes = new ClsMensaje();
 		ClsArchivo archivos = new ClsArchivo();
 
 		try {
