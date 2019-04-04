@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controladorServidor.ConexionServidor;
 import controladorUsuario.CtlUsuario;
 
 import javax.swing.JLabel;
@@ -17,19 +18,21 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 
 public class ventRegistroCliente extends JFrame {
 
 	private JPanel contentPane;
-	public JTextField txtCedulaUsuario;
-	public JTextField txtContrasenaUsuario;
-	public JTextField txtNombreUsuario;
-	public JTextField txtTelefonoUsuario;
-	public JTextField txtEmailUsuario;
 	static ventRegistroCliente frame;
-	CtlUsuario controlador;
-	
+	private Socket socket;
+	private DataOutputStream salidaDatos;
+	String host;
+	int puerto;
+
 	/**
 	 * Launch the application.
 	 */
@@ -45,14 +48,22 @@ public class ventRegistroCliente extends JFrame {
 			}
 		});
 	}
-	 
-
 	/**
 	 * Create the frame.
 	 */
 	public ventRegistroCliente() {
-		
-		controlador = new CtlUsuario();
+		try {
+			host = "localhost";
+			puerto = 1234;
+			socket = new Socket(host, puerto);
+			this.salidaDatos = new DataOutputStream(socket.getOutputStream());
+		} catch (UnknownHostException ex) {
+			ex.printStackTrace();
+			System.out.println("No se ha podido conectar con el servidor - ventLoginCliente (" + ex.getMessage() + ").");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			System.out.println("No se ha podido conectar con el servidor - ventLoginCliente (" + ex.getMessage() + ").");
+		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 535, 556);
@@ -65,30 +76,6 @@ public class ventRegistroCliente extends JFrame {
 		lblregistrateEsGratis.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblregistrateEsGratis.setBounds(33, 13, 359, 32);
 		contentPane.add(lblregistrateEsGratis);
-		
-		JButton btnRegistro = new JButton("REGISTRO");
-		btnRegistro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				String cedulaUsuario = txtCedulaUsuario.getText();	
-				String nombreUsuario = txtNombreUsuario.getText();
-				String telefonoUsuario = txtTelefonoUsuario.getText();
-				String emailUsuario = txtEmailUsuario.getText();
-				String contrasenaUsuario = txtContrasenaUsuario.getText();
-				boolean login = true;
-				
-				if (controlador.SolicitudGuardar(cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario, contrasenaUsuario, login)) {
-					JOptionPane.showMessageDialog(null, "¡Te has registrado con éxito!");
-				} else {
-					JOptionPane.showMessageDialog(null, "¡Ocurrio un error mientras te registrabas!");
-				}
-				
-				
-			}
-		});
-		btnRegistro.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRegistro.setBounds(71, 464, 131, 32);
-		contentPane.add(btnRegistro);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("C:\\Users\\juanm\\Desktop\\imagenUsuario.jpg"));
@@ -134,31 +121,47 @@ public class ventRegistroCliente extends JFrame {
 		lblEmail.setBounds(33, 399, 56, 16);
 		contentPane.add(lblEmail);
 		
-		txtCedulaUsuario = new JTextField();
+		JTextField txtCedulaUsuario = new JTextField();
 		txtCedulaUsuario.setBounds(276, 130, 176, 22);
 		contentPane.add(txtCedulaUsuario);
 		txtCedulaUsuario.setColumns(10);
 		
-		txtContrasenaUsuario = new JTextField();
+		JTextField txtContrasenaUsuario = new JTextField();
 		txtContrasenaUsuario.setBounds(276, 189, 176, 22);
 		contentPane.add(txtContrasenaUsuario);
 		txtContrasenaUsuario.setColumns(10);
 		
-		txtNombreUsuario = new JTextField();
+		JTextField txtNombreUsuario = new JTextField();
 		txtNombreUsuario.setBounds(276, 316, 176, 22);
 		contentPane.add(txtNombreUsuario);
 		txtNombreUsuario.setColumns(10);
 		
-		txtTelefonoUsuario = new JTextField();
+		JTextField txtTelefonoUsuario = new JTextField();
 		txtTelefonoUsuario.setBounds(276, 353, 176, 22);
 		contentPane.add(txtTelefonoUsuario);
 		txtTelefonoUsuario.setColumns(10);
 		
-		txtEmailUsuario = new JTextField();
+		JTextField txtEmailUsuario = new JTextField();
 		txtEmailUsuario.setBounds(276, 396, 176, 22);
 		contentPane.add(txtEmailUsuario);
 		txtEmailUsuario.setColumns(10);
 		
+		JButton btnRegistro = new JButton("REGISTRO");
+		btnRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String cedulaUsuario = txtCedulaUsuario.getText();	
+				String nombreUsuario = txtNombreUsuario.getText();
+				String telefonoUsuario = txtTelefonoUsuario.getText();
+				String emailUsuario = txtEmailUsuario.getText();
+				String contrasenaUsuario = txtContrasenaUsuario.getText();
+				String registrar ="registrar-"+cedulaUsuario+"-"+nombreUsuario+"-"+telefonoUsuario+"-"+emailUsuario+"-"+contrasenaUsuario;
+				new ConexionServidor(socket, registrar);
+			}
+		});
+		
+		btnRegistro.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnRegistro.setBounds(71, 464, 131, 32);
+		contentPane.add(btnRegistro);
 		JButton btnCancelar = new JButton("CANCELAR");
 		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCancelar.setBounds(341, 464, 111, 30);

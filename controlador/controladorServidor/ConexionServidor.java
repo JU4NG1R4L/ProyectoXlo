@@ -8,30 +8,25 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 import javax.swing.JTextField;
 
 /**
  * @author (Juan José Giraldo Salazar)
  *
- * juanj8845@gmail.com
+ *         juanj8845@gmail.com
  */
 public class ConexionServidor implements ActionListener {
 
 	private Socket socket;
-	private JTextField tfMensaje;
-	private String usuario;
+	private String datos;
 	private DataOutputStream salidaDatos;
-
-
-
-	public ConexionServidor(Socket socket, JTextField tfMensaje, String usuario) {
+	public ConexionServidor(Socket socket, String datos) {
 		this.socket = socket;
-		this.tfMensaje = tfMensaje;
-		this.usuario = usuario;
+		this.datos = datos;
 		try {
 			this.salidaDatos = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException ex) {
@@ -46,8 +41,7 @@ public class ConexionServidor implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			salidaDatos.writeUTF(usuario +": "+ tfMensaje.getText());
-			tfMensaje.setText("");
+			salidaDatos.writeUTF(datos);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			System.out.println("Error al intentar enviar un mensaje: " + ex.getMessage());

@@ -10,26 +10,19 @@ package usuario;
  */
 public class ClsUsuario {
 	private String cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario, contrasenaUsuario;
-	private boolean login;
 
 	public ClsUsuario() {
 		super();
 	}
 
 	public ClsUsuario(String cedulaUsuario, String nombreUsuario, String telefonoUsuario, String emailUsuario,
-			String contrasenaUsuario, boolean login) {
+			String contrasenaUsuario) {
 		super();
 		this.cedulaUsuario = cedulaUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.telefonoUsuario = telefonoUsuario;
 		this.emailUsuario = emailUsuario;
 		this.contrasenaUsuario = contrasenaUsuario;
-		this.login = login;
-	}
-
-	public ClsUsuario(boolean login) {
-		super();
-		this.login = login;
 	}
 
 	public String getCedulaUsuario() {
@@ -70,14 +63,6 @@ public class ClsUsuario {
 
 	public void setContrasenaUsuario(String contrasenaUsuario) {
 		this.contrasenaUsuario = contrasenaUsuario;
-	}
-
-	public boolean isLogin() {
-		return login;
-	}
-
-	public void setLogin(boolean login) {
-		this.login = login;
 	}
 
 }

@@ -29,7 +29,7 @@ public class UsuarioDAO extends ClsConexion {
 	super.ejecutarRetorno(consulta);
 	try {
 		if(resultadoDB.next()) {
-			dao.setCedulaUsuario(resultadoDB.getString("cedulaUsuari"));	
+			dao.setCedulaUsuario(resultadoDB.getString("cedulaUsuario"));	
 		}
 	}catch (Exception e) {
 		System.out.println("FALLO EN LA BUSQUEDA DAO");
@@ -37,4 +37,17 @@ public class UsuarioDAO extends ClsConexion {
 	return dao;
 	}
 	
+	public ClsUsuario login(String cedula, String password) {
+		String consulta = "select nombreUsuario, telefonoUsuario from usuario where cedulaUsuario="+cedula+" and contraseñaUsuario="+password;
+	super.ejecutarRetorno(consulta);
+	try {
+		if(resultadoDB.next()) {
+			dao.setNombreUsuario(resultadoDB.getString("nombreUsuario"));
+			dao.setContrasenaUsuario(resultadoDB.getString("contraseñaUsuario"));
+		}
+	}catch (Exception e) {
+		System.out.println("FALLO EN LA BUSQUEDA DAO LOGIN");
+	}
+	return dao;
+	}
 }

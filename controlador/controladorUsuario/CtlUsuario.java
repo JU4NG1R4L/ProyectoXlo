@@ -21,9 +21,9 @@ public class CtlUsuario {
 	}
 
 	public boolean SolicitudGuardar(String cedulaUsuario, String nombreUsuario, String telefonoUsuario,
-			String emailUsuario, String contrasenaUsuario, boolean login) {
+			String emailUsuario, String contrasenaUsuario) {
 		ClsUsuario usuario = new ClsUsuario(cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario,
-				contrasenaUsuario, login);
+				contrasenaUsuario);
 		UsuarioDAO usuDAO = new UsuarioDAO();
 		return usuDAO.guardarUsuario(usuario);
 	}
@@ -31,5 +31,10 @@ public class CtlUsuario {
 	public ClsUsuario SolicitudBuscar(String cedula) {
 		UsuarioDAO usuDAO = new UsuarioDAO();
 		return usuDAO.buscarUsuario(cedula);
+	}
+	
+	public ClsUsuario SolicitudLogin(String cedula, String contraseña) {
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		return usuDAO.login(cedula, contraseña);
 	}
 }

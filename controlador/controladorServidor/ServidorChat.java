@@ -35,7 +35,7 @@ public class ServidorChat {
 			// Se crea el serverSocket
 			servidor = new ServerSocket(puerto, maximoConexiones);
 
-			// Bucle infinito para esperar conexione
+			// Bucle infinito para esperar conexiones
 			while (true) {
 				System.out.println("Servidor a la espera de conexiones.");
 				socket = servidor.accept();
@@ -58,4 +58,5 @@ public class ServidorChat {
 			}
 		}
 	}
+
 }
