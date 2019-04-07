@@ -20,7 +20,7 @@ public class UsuarioDAO extends ClsConexion {
 				+ "(cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario, contraseñaUsuario, login) " + "values "
 				+ "('" + usuario.getCedulaUsuario() + "', '" + usuario.getNombreUsuario() + "', '"
 				+ usuario.getTelefonoUsuario() + "', '" + usuario.getEmailUsuario() + "', '"
-				+ usuario.getContrasenaUsuario() + "', " + usuario.isLogin() + ")";
+				+ usuario.getContrasenaUsuario() + "' )";
 		return super.ejecutar(consulta);
 	}
 	
