@@ -69,7 +69,7 @@ public class ConexionCliente extends Thread implements Observer {
 				mensajeRecibido = entradaDatos.readUTF();
 				StringTokenizer token = new StringTokenizer(mensajeRecibido, "-");
 				identificar = token.nextToken();
-				System.out.println(identificar);
+				System.err.println(identificar);
 				switch (identificar) {
 				case "login":
 					String cedula = token.nextToken();
@@ -77,8 +77,10 @@ public class ConexionCliente extends Thread implements Observer {
 					ClsUsuario usuario = controladorUsuario.SolicitudLogin(cedula, contraseña);
 					if(usuario!=null) {
 						salidaDatos.writeBoolean(true);
+						System.out.println("SE PUDO HACER LOGIN "+usuario.getNombreUsuario());
 					}else {
 						salidaDatos.writeBoolean(false);
+						System.out.println("NO SE PUDO HACER LOGIN");
 					}
 					break;
 				case "registrar":
@@ -87,7 +89,13 @@ public class ConexionCliente extends Thread implements Observer {
 					String telefonoUsuario=token.nextToken();
 					String emailUsuario=token.nextToken();
 					String contrasenaUsuario=token.nextToken();
-					if(controladorUsuario.SolicitudGuardar(cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario, contrasenaUsuario));
+					if(controladorUsuario.SolicitudGuardar(cedulaUsuario, nombreUsuario, telefonoUsuario, emailUsuario, contrasenaUsuario)) {
+						salidaDatos.writeBoolean(true);
+						System.out.println("SE PUDO REGISTRAR");
+					}else {
+						salidaDatos.writeBoolean(false);
+						System.out.println("NO SE PUDO REGISTRAR");
+					}
 					break;
 //				case "archivoConexion":
 //					datosRecibidos = new byte[256*1024];// Dato recibido, peso de archivo 262000
